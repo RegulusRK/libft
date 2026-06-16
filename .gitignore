@@ -2,3 +2,8 @@
 libft.a
 test
 test.exe
+
+# Local test binaries
+/test_libft
+/test_libft.exe
+/tmp_fd_test.txt
