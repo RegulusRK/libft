@@ -1,6 +1,6 @@
 #include "libft.h"
 
-static	size_t	count_digits(long n)
+static size_t	count_digits(long long n)
 {
 	size_t	count;
 
@@ -24,7 +24,7 @@ char	*ft_itoa(int n)
 {
 	size_t	max;
 	char 	*num_str;
-	long	nb;
+	long long	nb;
 
 	nb = n;
 	max = count_digits(nb);
