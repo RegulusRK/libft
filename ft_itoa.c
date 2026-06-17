@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rafcrist <rafcrist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/17 14:11:32 by rafcrist          #+#    #+#             */
+/*   Updated: 2026/06/17 14:13:05 by rafcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static size_t	count_digits(long long n)
@@ -22,8 +34,8 @@ static size_t	count_digits(long long n)
 
 char	*ft_itoa(int n)
 {
-	size_t	max;
-	char 	*num_str;
+	size_t		max;
+	char		*num_str;
 	long long	nb;
 
 	nb = n;

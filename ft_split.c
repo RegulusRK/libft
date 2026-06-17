@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rafcrist <rafcrist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/17 15:25:01 by rafcrist          #+#    #+#             */
+/*   Updated: 2026/06/17 15:34:14 by rafcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static size_t	count_words(char const *s, char c)
@@ -19,29 +31,16 @@ static size_t	count_words(char const *s, char c)
 	return (word);
 }
 
-static size_t	word_len(char const *s, char c)
-{
-	size_t	i;
-	size_t	len;
-
-	i = 0;
-	len = 0;
-	while (s[i] && s[i] != c)
-	{
-		i++;
-		len++;
-	}
-	return (len);
-}
-
 static char	*copy_word(char const *s, char c)
 {
 	size_t	i;
-	char	*new_word;
 	size_t	len;
+	char	*new_word;
 
 	i = 0;
-	len = word_len(s, c);
+	len = 0;
+	while (s[len] && s[len] != c)
+		len++;
 	new_word = malloc(len + 1);
 	if (new_word == NULL)
 		return (NULL);
@@ -65,24 +64,18 @@ static char	**free_split(char **split, size_t j)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+static char	**fill_split(char **split, char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
-	size_t	words;
-	char	**split;
 
 	i = 0;
 	j = 0;
-	words = (count_words(s, c));
-	split = malloc((words + 1) * sizeof(char *));
-	if (split == NULL)
-		return (NULL);
 	while (s[i])
 	{
 		while (s[i] && s[i] == c)
 			i++;
-		if (s[i] && s[i] != c)
+		if (s[i])
 		{
 			split[j] = copy_word(&s[i], c);
 			if (split[j] == NULL)
@@ -94,4 +87,16 @@ char	**ft_split(char const *s, char c)
 	}
 	split[j] = NULL;
 	return (split);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**split;
+
+	if (s == NULL)
+		return (NULL);
+	split = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (split == NULL)
+		return (NULL);
+	return (fill_split(split, s, c));
 }

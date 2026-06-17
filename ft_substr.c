@@ -1,37 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rafcrist <rafcrist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/17 15:47:56 by rafcrist          #+#    #+#             */
+/*   Updated: 2026/06/17 15:49:49 by rafcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t i;
-	size_t size;
-	char *sub_s;
-	size_t copy_len;
+	size_t	i;
+	size_t	s_len;
+	char	*sub_s;
 
-	size = 0;
-	i = 0;
-	while (s[size])
-		size++;	
-	if (start >= size)
-	{
-		sub_s = malloc(1);
-		if (sub_s == NULL)
-			return (NULL);
-		sub_s[0] = '\0';
-		return (sub_s);
-	}
-	if (len < size - start)
-		copy_len = len;
-	else
-		copy_len = size - start;
-	sub_s = malloc(copy_len + 1);
+	if (s == NULL)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		len = 0;
+	else if (len > s_len - start)
+		len = s_len - start;
+	sub_s = malloc(len + 1);
 	if (sub_s == NULL)
 		return (NULL);
-	while (i < copy_len && s[start + i])
+	i = 0;
+	while (i < len)
 	{
 		sub_s[i] = s[start + i];
 		i++;
 	}
 	sub_s[i] = '\0';
-
 	return (sub_s);
 }
